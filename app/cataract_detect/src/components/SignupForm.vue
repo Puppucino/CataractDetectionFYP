@@ -85,7 +85,8 @@ const onSubmit = async () => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        username: firstName.value + ' ' + lastName.value,
+        first_name: firstName.value,
+        last_name: lastName.value,
         email: email.value,
         password: password.value,
         phone: countryCode.value + phone.value

@@ -15,7 +15,7 @@
     </div>
     <div class="dashboard-row">
       <span class="dashboard-label">Recommendation</span>
-      <span class="dashboard-value">{{ recommendation }}</span>
+      <span class="dashboard-value dashboard-recommendation">{{ recommendation }}</span>
     </div>
     <div class="dashboard-explanation">
       <strong>How to interpret:</strong>
@@ -101,5 +101,10 @@ const recommendation = computed(() => {
   background: #f0f7ff;
   border-radius: 8px;
   padding: 0.7rem 1rem;
+}
+.dashboard-recommendation {
+  text-align: right;
+  display: block;
+  width: 100%;
 }
 </style> 

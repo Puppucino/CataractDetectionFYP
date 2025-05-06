@@ -5,12 +5,12 @@ from controllers.user_controller import register_user, login_user, get_profile, 
 
 router = APIRouter()
 
-def get_db():
+async def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
-        db.close()
+        await db.close()
 
 @router.post("/register")
 async def register(data: dict, db=Depends(get_db)):
