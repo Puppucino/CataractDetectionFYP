@@ -12,7 +12,7 @@ export function useMedicalQA() {
     error.value = ''
     loading.value = true
     try {
-      const res = await fetch('http://localhost:8000/api/medical/qa', {
+      const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/medical/qa', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question })

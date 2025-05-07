@@ -15,7 +15,7 @@ export function useImageUpload() {
       const formData = new FormData()
       formData.append('image', file)
       const token = localStorage.getItem('token')
-      const res = await fetch('http://localhost:8000/api/images/upload', {
+      const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/images/upload', {
         method: 'POST',
         headers: token ? { 'Authorization': `Bearer ${token}` } : {},
         body: formData

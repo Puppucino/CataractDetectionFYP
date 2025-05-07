@@ -10,7 +10,7 @@ load_dotenv()
 
 router = APIRouter()
 
-INDEX_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../medical_vectorstore'))
+INDEX_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'medical_vectorstore'))
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
 # Load vectorstore and set up retriever

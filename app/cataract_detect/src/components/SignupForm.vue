@@ -81,7 +81,7 @@ const onSubmit = async () => {
   }
   // Send registration request to backend
   try {
-    const res = await fetch('http://localhost:8000/api/auth/register', {
+    const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -74,7 +74,7 @@ const { uploadImage, result, error, loading } = useImageUpload()
 const aiLoading = ref(false)
 const userInput = ref('')
 const chat = ref([])
-const backendUrl = 'http://localhost:8000'
+const backendUrl = 'https://cataract-backend-163662192726.us-central1.run.app'
 
 const userFirstName = ref('')
 const userLastName = ref('')
@@ -94,8 +94,11 @@ const fetchUserProfile = async () => {
   const token = localStorage.getItem('token')
   if (token) {
     try {
-      const res = await fetch('http://localhost:8000/api/auth/me', {
-        headers: { 'Authorization': `Bearer ${token}` }
+      const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/auth/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       })
       if (res.ok) {
         const data = await res.json()
@@ -157,7 +160,7 @@ const onUpload = async () => {
     })
     aiLoading.value = true
     try {
-      const res = await fetch('http://localhost:8000/api/deepseek/explain', {
+      const res = await fetch(backendUrl + '/api/deepseek/explain', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ result: result.value.prediction, lastName: userLastName.value })
@@ -200,7 +203,7 @@ const onAsk = async () => {
       role: m.role === 'user' ? 'user' : 'assistant',
       content: m.content
     }))
-    const res = await fetch('http://localhost:8000/api/deepseek/explain', {
+    const res = await fetch(backendUrl + '/api/deepseek/explain', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages, lastName: userLastName.value })

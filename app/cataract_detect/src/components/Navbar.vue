@@ -45,8 +45,11 @@ const fetchUserProfile = async () => {
   const token = localStorage.getItem('token')
   if (token) {
     try {
-      const res = await fetch('http://localhost:8000/api/auth/me', {
-        headers: { 'Authorization': `Bearer ${token}` }
+      const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/auth/me', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       })
       if (res.ok) {
         const data = await res.json()

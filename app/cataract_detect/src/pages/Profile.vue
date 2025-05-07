@@ -43,7 +43,7 @@
           <v-card-text>
             <v-data-table :headers="historyHeaders" :items="history" class="elevation-1">
               <template #item.image="{ item }">
-                <img :src="`http://localhost:8000/uploads/${item.filename}`" alt="uploaded" style="height:48px;max-width:64px;object-fit:cover;border-radius:4px;" />
+                <img :src="`https://cataract-backend-163662192726.us-central1.run.app/uploads/${item.filename}`" alt="uploaded" style="height:48px;max-width:64px;object-fit:cover;border-radius:4px;" />
               </template>
               <template #item.created_at="{ item }">
                 {{ formatDate(item.created_at) }}
@@ -90,8 +90,11 @@ async function fetchProfile() {
     router.push('/')
     return
   }
-  const res = await fetch('http://localhost:8000/api/auth/me', {
-    headers: { 'Authorization': `Bearer ${token}` }
+  const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/auth/me', {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
   })
   if (res.status === 401) {
     localStorage.removeItem('token')
@@ -107,7 +110,7 @@ async function updateProfile() {
   profileLoading.value = true
   profileMsg.value = ''
   const token = localStorage.getItem('token')
-  const res = await fetch('http://localhost:8000/api/auth/profile', {
+  const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/auth/profile', {
     method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -136,7 +139,7 @@ async function changePassword() {
     return
   }
   const token = localStorage.getItem('token')
-  const res = await fetch('http://localhost:8000/api/auth/password', {
+  const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/auth/password', {
     method: 'PUT',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -160,7 +163,7 @@ async function changePassword() {
 
 async function fetchHistory() {
   const token = localStorage.getItem('token')
-  const res = await fetch('http://localhost:8000/api/images/history', {
+  const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/images/history', {
     headers: { 'Authorization': `Bearer ${token}` }
   })
   if (res.ok) {

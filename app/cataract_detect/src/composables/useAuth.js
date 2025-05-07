@@ -5,7 +5,7 @@ const isLoggedIn = ref(!!localStorage.getItem('token'))
 export function useAuth() {
   const login = async (email, password) => {
     try {
-      const res = await fetch('http://localhost:8000/api/auth/login', {
+      const res = await fetch('https://cataract-backend-163662192726.us-central1.run.app/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
