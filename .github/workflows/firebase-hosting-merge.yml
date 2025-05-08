@@ -6,15 +6,25 @@ on:
   push:
     branches:
       - yx
+
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm run build
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: app/cataract_detect
+
+      - name: Build
+        run: npm run build
+        working-directory: app/cataract_detect
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CATARACTDETECT_EE566 }}
           channelId: live
           projectId: cataractdetect-ee566
+          entryPoint: app/cataract_detect
